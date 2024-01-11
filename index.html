@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title id="dynamicData1">Dimension by HTML5 UP</title>
+	<script>
+		// Fazendo uma chamada à API
+		fetch('http:///lamentable-picture-production.up.railway.app/api/site?fields=MainTitle')
+			.then(response => response.json())
+			.then(data => {
+				// Atualizando o texto do elemento h1
+				const h1Element = document.getElementById('dynamicData1');
+				h1Element.innerText = data.data.attributes.MainTitle;
+			})
+			.catch(error => console.error('Erro ao buscar dados da API:', error));
+	</script>
+	<style>
+		.section {
+			margin-bottom: 20px;
+			/* Adicione margem inferior para separar as seções */
+		}
+	</style>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="logo">
+				<span class="icon fa-gem"></span>
+			</div>
+			<div class="content">
+				<div class="inner" id="content">
+					<h1 id="dynamicData2">Dimension</h1>
+					<script>
+						// Fazendo uma chamada à API
+						fetch('http:///lamentable-picture-production.up.railway.app/api/site?fields=MainTitle')
+							.then(response => response.json())
+							.then(data => {
+								// Atualizando o texto do elemento h1
+								const h1Element = document.getElementById('dynamicData2');
+								h1Element.innerText = data.data.attributes.MainTitle;
+							})
+							.catch(error => console.error('Erro ao buscar dados da API:', error));
+					</script>
+					<div id="dynamicData3">A fully responsive site template designed by <a
+							href="https://html5up.net">HTML5 UP</a> and
+						released<br />
+						for free under the <a href="https://html5up.net/license">Creative Commons</a> license.</div>
+				</div>
+				<script>
+					// Função para fazer a chamada à API e renderizar os elementos em HTML
+					async function fetchDataAndRender() {
+						try {
+							// Faz a chamada à API
+							const response = await fetch('http:///lamentable-picture-production.up.railway.app/api/site?fields=Main');
+							const data = await response.json();
+
+							// Extrai os dados necessários
+							const textData = data.data.attributes.Main;
+
+							// Cria o conteúdo HTML com base nos dados
+							const htmlContent = textData.map(item => {
+								if (item.type === 'heading') {
+									return `<h${item.level}>${item.children[0].text}</h${item.level}>`;
+								} else if (item.type === 'list') {
+									const listItems = item.children.map(listItem => {
+										return `<li>${listItem.children[0].text}</li>`;
+									});
+
+									return `<${item.format === 'ordered' ? 'ol' : 'ul'}>${listItems.join('')}</${item.format === 'ordered' ? 'ol' : 'ul'}>`;
+								} else if (item.type === 'paragraph') {
+									return `<p>${item.children[0].text}</p>`;
+								}
+							}).join('');
+
+							// Adiciona o conteúdo ao elemento com id "content"
+							document.getElementById('dynamicData3').innerHTML = htmlContent;
+						} catch (error) {
+							console.error('Erro ao buscar dados da API:', error);
+						}
+					}
+
+					// Chama a função para renderizar os dados ao carregar a página
+					fetchDataAndRender();
+				</script>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#contact" id="dynamicData4">Contact</a></li>
+					
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+
+
+
+
+			<!-- Contact -->
+			<article id="contact">
+				<h2 class="major"  id="dynamicData5">Contact</h2>
+				<form action="https://formspree.io/f/mvoeggkz" method="post">
+					<div class="fields">
+						<div class="field half">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" required />
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input type="email" name="email" id="email" required />
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="4" required></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><input type="submit" value="Send Message" class="primary" /></li>
+						<li><input type="reset" value="Reset" /></li>
+					</ul>
+				</form>
+				<script>
+					// Fazendo uma chamada à API
+					fetch('http:///lamentable-picture-production.up.railway.app/api/site?fields=ContactTitle')
+						.then(response => response.json())
+						.then(data => {
+							const h1Element = document.getElementById('dynamicData4');
+							h1Element.innerText = data.data.attributes.ContactTitle;
+							const aElement = document.getElementById('dynamicData5');
+							aElement.innerText = data.data.attributes.ContactTitle;
+
+						})
+						.catch(error => console.error('Erro ao buscar dados da API:', error));
+				</script>
+			</article>
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">&copy; paulista.tk. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+		</footer>
+
+	</div>
+
+	<!-- BG -->
+	<div id="bg"></div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
